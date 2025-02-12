@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yousef Ali | AI & ML Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Core Variables */
+        :root {
+            --neon-blue: #00f7ff;
+            --deep-blue: #0a192f;
+            --cyber-purple: #b025ff;
+            --space-black: #080808;
+            --tech-green: #00ff9d;
+            --text-primary: #e6e6e6;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: var(--space-black);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-blue);
+            border-radius: 4px;
+        }
+
+        /* Global Styles */
+        body {
+            background: var(--space-black);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Cyberpunk Line Decoration */
+        .cyber-line {
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--neon-blue) 50%, 
+                transparent 100%);
+            width: 100%;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .cyber-line::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--neon-blue);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--neon-blue), var(--tech-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .profile-frame {
+            width: 400px;
+            height: 400px;
+            border: 2px solid var(--neon-blue);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transform: perspective(1000px) rotateY(-15deg);
+            transition: transform 0.5s;
+        }
+
+        .profile-frame:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-frame::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 40%,
+                rgba(0, 247, 255, 0.1) 45%,
+                rgba(0, 247, 255, 0.2) 50%,
+                rgba(0, 247, 255, 0.1) 55%,
+                transparent 60%
+            );
+            transform: rotate(45deg);
+            animation: glare 3s infinite;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 4rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: var(--neon-blue);
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            width: 400px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: auto;
+            left: -60px;
+        }
+
+        /* Technologies Section */
+        .technologies {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 247, 255, 0.05));
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.2);
+        }
+
+        /* Project Section */
+.projects {
+    padding: 6rem 0;
+    position: relative;
+}
+
+.projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 247, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(176, 37, 255, 0.1) 0%, transparent 20%);
+    pointer-events: none;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.project-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--cyber-purple));
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 247, 255, 0.2);
+}
+
+.project-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--neon-blue);
+}
+
+.project-description {
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    opacity: 0.9;
+}
+
+.project-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.skill-tag {
+    padding: 0.5rem 1rem;
+    background: rgba(0, 247, 255, 0.1);
+    border: 1px solid rgba(0, 247, 255, 0.2);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--neon-blue);
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--text-primary);
+    background: rgba(0, 247, 255, 0.1);
+    border: 1px solid rgba(0, 247, 255, 0.2);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.project-btn:hover {
+    background: var(--neon-blue);
+    color: var(--space-black);
+}
+
+/* AI Pattern Animations */
+.ai-pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.neural-node {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--neon-blue);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.neural-connection {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, var(--neon-blue), transparent);
+    animation: connectionFlow 3s infinite linear;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes connectionFlow {
+    0% { width: 0; opacity: 0; }
+    50% { width: 100px; opacity: 0.5; }
+    100% { width: 0; opacity: 0; }
+}
+
+/* Brief Stats Styling */
+.brief-stats {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--neon-blue);
+    display: block;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Hero Brief */
+.hero-brief {
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+    max-width: 600px;
+    line-height: 1.8;
+}
+
+/* Animations */
+        @keyframes glare {
+            0% { transform: translate(-50%, -50%) rotate(45deg); }
+            100% { transform: translate(50%, 50%) rotate(45deg); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-frame {
+                width: 300px;
+                height: 300px;
+                margin: 0 auto;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 80px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-content::before {
+                left: -50px !important;
+                right: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">Yousef Ali</div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#technologies" class="nav-link">Technologies</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text fade-in">
+                    <h1>AI & Machine Learning Engineer</h1>
+                    <p class="hero-brief">Passionate AI & ML Engineer with expertise in computer vision, robotics, and deep learning. Creating innovative solutions that bridge the gap between artificial intelligence and real-world applications.</p>
+                    <div class="brief-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">25+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">14+</span>
+                            <span class="stat-label">AI Systems</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Robotics</span>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="hero-image fade-in">
+                    <div class="profile-frame">
+                        <img src="WhatsApp Image 2025-02-10 at 19.22.13_d848e598.jpg" alt="Yousef Ali">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cyber-line"></div>
+
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2>Experience </h2>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <h3>RoboBoat Competition</h3>
+                        <p>Participated in the 16th Annual International RoboBoat Competition (March 22-28, 2023) in Sarasota, Florida, securing 2nd place in Egypt and 7th globally. Gained hands-on experience in designing, developing, and testing autonomous maritime robots. Worked with a multidisciplinary team to tackle challenges in autonomous system design, real-time control, and maritime navigation, enhancing problem-solving, teamwork, and innovation skills in robotics and AI.</p>
+                        <span>Mar 2023</span>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <h3>El-Safwa Steel Factory</h3>
+                        <p>Completed a month-long PLC programming training in industrial automation, gaining hands-on experience in designing, programming, and troubleshooting automation processes. Developed skills in optimizing production efficiency, real-time control applications, and integrating PLC systems with HMIs in a manufacturing environment, particularly in steel production.</p>
+                        <span>Mar 2022</span>
+                    </div>
+                </div>
+
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <h3>Head of Public Relations - Innovation Club</h3>
+                        <p>Led public relations and strategic communication for the Innovation Club at the Arab Academy for Science, Technology & Maritime Transport. Organized events, workshops, and seminars to promote innovation, fostered relationships with students, faculty, and industry partners, and enhanced community engagement in projects and competitions. Contributed to the club’s success, earning recognition in national and international events.</p>
+                        <span>fabruary 2023</span>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <h3>Summer traning - Computer Science and Artificial Intelligence</h3>
+                        <p>Attended a summer school program on Computer Science and AI (July 14-22, 2022), gaining hands-on experience in machine learning, data analysis, and AI applications. Participated in interactive sessions and group projects, collaborating with international students and faculty to explore cutting-edge advancements in AI and computing.</p>
+                        <span>june 2022</span>
+                    </div>
+                </div>
+                <!-- Add more timeline items -->
+            </div>
+        </div>
+    </section>
+
+    <div class="cyber-line"></div>
+
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <h3 class="project-title">AUCTUS: Smart Delivering Robot - Graduation Project </h3>
+                    <p class="project-description"> fAUCTUS is an autonomous delivering robot designed to address traditional logistics inefficiencies by providing accurate navigation, eco-friendly delivery, and intelligent obstacle avoidance. The robot operates via a user-friendly mobile and web interface, making it ideal for outdoor and indoor delivery applications. This project was developed as part of our graduation project and aims to contribute to the future of autonomous delivery.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">ROS</span>
+                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">Electronics</span>
+                        <span class="skill-tag">hardware </span>
+                        <span class="skill-tag">Arduino  </span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/Smart-Delivering-Robot-_-Graduation-Project" class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="https://drive.google.com/file/d/1EYwgsteJbQidcDTnX8veKDyQtgDGWrn7/view?usp=sharing" class="project-btn">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">SMART HOME COMPANY WEB</h3>
+                    <p class="project-description">The Smart Home Company project is an e-commerce platform for selling smart home products like security cameras, smart door locks, and Alexa devices. Built using HTML, CSS, JavaScript, and Node.js, the platform provides a secure and user-friendly experience for browsing and purchasing smart home products online.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag"> Node.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/SMART-HOME-COMPANY-WEB" class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Tazkarti Concert Ticket Booking System</h3>
+                    <p class="project-description">In today's entertainment landscape, the demand for seamless and convenient access to concert events has never been higher. This project aims to address this demand by developing a rich concert ticket booking site, named Tazkarti.Administrators will have tools to manage parties, categorize them by genre, release date, and language, and receive notifications for bookings and cancellations.
+                        The project emphasizes intuitive design, scalability, responsive interfaces, and secure bookings to enrich the concert-going experience for all stakeholders.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Use case Diagrams</span>
+                        <span class="skill-tag">Class Diagrams</span>
+                        <span class="skill-tag">Sequance Diagrams</span>
+                        
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/Tazkarti-Concert-Ticket-Booking-System-." class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Smart Delivery Drone</h3>
+                    <p class="project-description">The Smart Delivery Drone is an exciting and innovative project designed to revolutionize the way we handle small package deliveries. Combining cutting-edge drone technology, autonomous flight control, and a robotic arm, this drone is capable of delivering packages with ease and precision. With the power of a Raspberry Pi-based camera system and GPS navigation, it can autonomously identify and grasp objects for delivery.
+
+                        Whether you want a robot assistant for handling deliveries or simply want to explore new tech, this project has everything you need to get started with smart drone technology!
+                        
+                        </p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">Arduino </span>
+                        <span class="skill-tag"> C language programming</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/Smart-Delivering-Drone---Project" class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="https://drive.google.com/file/d/19tpaXSOM84nQwlA43BFDMHBRrMAzHOvd/view?usp=sharing" class="project-btn">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Shooting Drone with Face Detection and Robotic Arm</h3>
+                    <p class="project-description">The Shooting Drone with Face Detection project combines face recognition with a shooting drone. The drone uses a camera to detect a person, and based on the detection, the robotic arm is aimed at the person and fires a laser (or projectile). This project uses Raspberry Pi and OpenCV for real-time face recognition, integrated with a robotic arm for targeting and shooting.
+                        </p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">Arduino </span>
+                        <span class="skill-tag"> C language programming</span>
+                        <span class="skill-tag">Numpy</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/shooting-drone" class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="https://drive.google.com/file/d/1tAClmOmllmxOBuJ-zOW56IH3uorchHGb/view?usp=sharing" class="project-btn">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Chatbot with GUI Interface and NLP Model</h3>
+                    <p class="project-description">This project implements a Chatbot using Natural Language Processing (NLP) to understand and respond to user queries. The chatbot is built using a pre-trained machine learning model and offers a user-friendly GUI interface for interaction. The system uses the Keras library for training the model, NLTK for text preprocessing, and tkinter for the chat interface. The chatbot can learn from intents and provide relevant responses based on user input.
+
+                        Key Features:
+                        Natural Language Understanding: The chatbot uses a deep learning model to predict the appropriate response based on user input.
+                        User-Friendly GUI: Built with tkinter, providing a simple chat interface.
+                        Training System: Allows the chatbot to be trained on new intents and patterns using predefined datasets.
+                        Customizable Intents: You can add new intents to expand the chatbot's functionality.
+                        
+                        </p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Numpy</span>
+                        <span class="skill-tag">nlp </span>
+                        
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/Chatbot-with-GUI-Interface-and-NLP-Model" class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">English Premier League Match Analysis and Prediction System</h3>
+                    <p class="project-description">This project explores the match day statistics of the 2021-2022 English Premier League season and applies Machine Learning (Naive Bayes) to predict match outcomes. With an in-depth analysis of teams, goals, and referees, the project delivers valuable insights for football enthusiasts, analysts, and sports betting systems.
+
+                        The system is backed by interactive data dashboards, CSV data processing, and predictive models to enhance understanding and forecasting of game results.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Machine learning Model</span>
+                        <span class="skill-tag">Data science</span>
+                        <span class="skill-tag">Visualization Data</span>
+                        <span class="skill-tag"> Power BI</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/English-Premier-League-Match-Analysis-and-Prediction-System-" class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">RoboBoat 2023 - Certificate of Participation</h3>
+                    <p class="project-description">In 2023, I had the incredible opportunity to participate in the 16th Annual International RoboBoat Competition, where my team, Arab Academy for Science, Technology & Maritime Transport - Hapi, made a remarkable impact. Not only did we compete with the best teams globally, but we also brought home some serious recognition:
+
+                        🥈 2nd Place in Egypt 🏅
+                        🌍 7th Place globally 🌊
+                        This journey was about more than just placing— it was about pushing the boundaries of maritime technology and robotics, showcasing innovation, teamwork, and perseverance.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">ROS</span>
+                        <span class="skill-tag">Image Processing</span>
+                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">Arduino</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/RoboBoat-Competition-Participant" class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="https://drive.google.com/file/d/1fyRgS7Y4Mm8VwEx1HBSH5x5-7QSNn0V-/view?usp=sharing" class="project-btn">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <h3 class="project-title">RoboBot Fire Fighter - IEEE Competition Project</h3>
+                    <p class="project-description">The RoboBot Fire Fighter is an autonomous firefighting robot designed to detect and extinguish fires using Arduino-based wireless communication. The system consists of two main components:
+
+                        1️⃣ Sender Module – Equipped with sensors to detect fire and send data wirelessly.
+                        2️⃣ Receiver Module – Controls the robot's movement and activates the fire suppression system.
+                        
+                        This project is developed for an IEEE robotics competition, showcasing an advanced approach to autonomous firefighting using IoT, sensor integration, and robotic movement.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">C Programming language </span>
+                        <span class="skill-tag">Electronics</span>
+                        <span class="skill-tag">Hardware</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/RoboBot-Fire-Fighter-" class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="https://drive.google.com/file/d/1qj5dA2_QI1zJVn2RNGV9TJCLK1sa9166/view?usp=sharing" class="project-btn">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
+                </div>
+
+                                    <div class="project-card fade-in">
+                        <h3 class="project-title">Image Preprocessing with OpenCV</h3>
+                        <p class="project-description">This project demonstrates the basic steps of image preprocessing using OpenCV. The notebook provides functions for:
+
+                            Loading images
+                            Converting to grayscale
+                            Applying Gaussian blur
+                            Detecting edges with Canny edge detection
+                            Denoising with median blur
+                            These techniques are commonly used in computer vision applications to prepare images for further analysis or feature extraction.
+                            
+                            </p>
+                        <div class="project-skills">
+                            <span class="skill-tag">OpenCV</span>
+                            <span class="skill-tag">Numpy</span>
+                            <span class="skill-tag">apply filters </span>
+                            <span class="skill-tag">image processing </span>
+                            
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Yousef3li1/image-processing" class="project-btn">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div> 
+
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Mushroom Detection & Classification</h3>
+                    <p class="project-description">The Mushroom Detection & Classification project is a machine learning-based application designed to detect and classify different types of mushrooms. Using computer vision and deep learning, the model can determine whether a mushroom is edible or poisonous based on its physical characteristics.
+
+                        This project leverages YOLO (You Only Look Once) object detection and deep learning models to perform real-time detection and classification of mushrooms from images or videos.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">Numpy</span>
+                        <span class="skill-tag">classification</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/Mushroom-Detection-Classification" class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Accelerating Convolutional Neural Networks with CUDA and OpenMP</h3>
+                    <p class="project-description">Convolutional Neural Networks (CNNs) have revolutionized computer vision and pattern recognition tasks, but their execution time can be a bottleneck for real-time applications due to their computational complexity. This project addresses the performance challenges by leveraging CUDA and OpenMP technologies to optimize CNN implementations.
+
+                        By harnessing parallelism using CUDA kernels and OpenMP directives, the project demonstrates significant speedup in critical operations such as convolution, pooling, and forward passes, ensuring faster and more efficient processing of CNNs.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">CUDA</span>
+                        <span class="skill-tag">OpenMP</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Yousef3li1/Accelerating-Convolutional-Neural-Networks-with-CUDA-and-OpenMP" class="project-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+  
+                </div>
+            </div>
+        </div>
+        <div class="ai-pattern"></div>
+    </section>
+
+    <div class="cyber-line"></div>
+
+    <section class="technologies" id="technologies">
+        <div class="container">
+            <h2>Technologies & Skills</h2>
+            <div class="tech-grid">"
+                <!-- Technology items will be added via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <div class="cyber-line"></div>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yousef Ali | AI & ML Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Core Variables */
+        :root {
+            --neon-blue: #00f7ff;
+            --deep-blue: #0a192f;
+            --cyber-purple: #b025ff;
+            --space-black: #080808;
+            --tech-green: #00ff9d;
+            --text-primary: #e6e6e6;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: var(--space-black);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-blue);
+            border-radius: 4px;
+        }
+
+        /* Global Styles */
+        body {
+            background: var(--space-black);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Enhanced Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Enhanced Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 247, 255, 0.05));
+        }
+
+        .contact-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+        }
+
+        .social-link i {
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-link:hover::before {
+            opacity: 0.2;
+        }
+
+        .social-link:hover i {
+            color: var(--neon-blue);
+        }
+
+        /* Contact Info Cards */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .contact-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--text-primary);
+            opacity: 0.8;
+        }
+
+        /* Rest of your existing styles remain the same */
+        
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            .social-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Your existing navigation and other sections remain the same -->
+
+    <!-- Enhanced Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <h2 class="contact-title">Let's Connect</h2>
+                <p class="contact-description">Feel free to reach out through any of these platforms</p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/yousef3li1" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:yousef3li7899@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://wa.me/201010603418" class="social-link" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/joo3li111?igsh=eTRtMGFwMG5rMHUz&utm_source=qr" class="social-link" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="http://linkedin.com/in/yousef3li7899" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1863djH6wv1rFZe_7wnMLGoLVKGrPPl_I/view?usp=sharing" class="social-link" target="_blank">
+                        <i class="fa-solid fa-file"></i>
+                    </a>
+                </div>
+
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>yousef3li7899@gmail.com</p>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone</h3>
+                        <p>+20 1010603418</p>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>tanta, Egypt</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Your existing script section remains the same -->
+    <script>
+        // Your existing JavaScript code remains the same
+    </script>
+</body>
+</html>
+
+    <script>
+        // Technology data
+        const technologies = [
+            {
+                name: 'Python',
+                icon: 'fab fa-python',
+                category: 'Programming'
+            },
+            {
+                name: 'TensorFlow',
+                icon: 'fas fa-brain',
+                category: 'AI/ML'
+            },
+            {
+                name: 'PyTorch',
+                icon: 'fas fa-fire',
+                category: 'AI/ML'
+            },
+            {
+                name: 'OpenCV',
+                icon: 'fas fa-camera',
+                category: 'Computer Vision'
+            },
+            {
+                name: 'ROS',
+                icon: 'fas fa-robot',
+                category: 'Robotics'
+            },
+            {
+                name: 'Docker',
+                icon: 'fab fa-docker',
+                category: 'DevOps'
+            },
+            {
+                name: 'AWS',
+                icon: 'fab fa-aws',
+                category: 'Cloud'
+            },
+            {
+                name: 'Git',
+                icon: 'fab fa-git-alt',
+                category: 'Tools'
+            }
+
+        ];
+
+        // Experience data
+        const experiences = [
+            {
+                title: 'RoboBoat Competition',
+                role: 'Computer Vision and ROS Developer',
+                date: 'Mar 2023',
+                description: 'Led the development of autonomous navigation systems using computer vision and ROS.'
+            },
+            {
+                title: 'El-Safwa Steel Factory',
+                role: 'PLC Programming Trainee',
+                date: 'Mar 2022',
+                description: 'Developed and implemented PLC programs for industrial automation systems.'
+            }
+        ];
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Load technologies
+        function loadTechnologies() {
+            const techGrid = document.querySelector('.tech-grid');
+            technologies.forEach(tech => {
+                const techItem = document.createElement('div');
+                techItem.className = 'tech-item fade-in';
+                techItem.innerHTML = `
+                    <i class="${tech.icon} tech-icon"></i>
+                    <h3>${tech.name}</h3>
+                    <p>${tech.category}</p>
+                `;
+                techGrid.appendChild(techItem);
+                observer.observe(techItem);
+            });
+        }
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const heroContent = document.querySelector('.hero-content');
+            
+            heroContent.style.transform = `translateY(${scrolled * 0.4}px)`;
+            hero.style.backgroundPositionY = `${scrolled * 0.5}px`;
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form handling
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Add your form submission logic here
+                console.log('Form submitted');
+            });
+        }
+
+        // Cyber line animation
+        const cyberLines = document.querySelectorAll('.cyber-line');
+        cyberLines.forEach(line => {
+            line.addEventListener('mouseover', () => {
+                line.style.boxShadow = '0 0 20px var(--neon-blue)';
+            });
+            line.addEventListener('mouseout', () => {
+                line.style.boxShadow = 'none';
+            });
+        });
+
+        // Neural network pattern animation
+        function createNeuralPattern() {
+            const aiPattern = document.querySelector('.ai-pattern');
+            const numNodes = 20;
+            const nodes = [];
+
+            // Create nodes
+            for (let i = 0; i < numNodes; i++) {
+                const node = document.createElement('div');
+                node.className = 'neural-node';
+                node.style.left = `${Math.random() * 100}%`;
+                node.style.top = `${Math.random() * 100}%`;
+                aiPattern.appendChild(node);
+                nodes.push(node);
+            }
+
+            // Create connections
+            nodes.forEach((node, i) => {
+                nodes.slice(i + 1).forEach(targetNode => {
+                    const distance = Math.hypot(
+                        node.offsetLeft - targetNode.offsetLeft,
+                        node.offsetTop - targetNode.offsetTop
+                    );
+                    
+                    if (distance < 200) {
+                        const connection = document.createElement('div');
+                        connection.className = 'neural-connection';
+                        connection.style.width = `${distance}px`;
+                        connection.style.left = `${node.offsetLeft}px`;
+                        connection.style.top = `${node.offsetTop}px`;
+                        
+                        const angle = Math.atan2(
+                            targetNode.offsetTop - node.offsetTop,
+                            targetNode.offsetLeft - node.offsetLeft
+                        );
+                        
+                        connection.style.transform = `rotate(${angle}rad)`;
+                        aiPattern.appendChild(connection);
+                    }
+                });
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTechnologies();
+            createNeuralPattern();
+        });
+
+        // Add glitch effect on hover for tech items
+        document.querySelectorAll('.tech-item').forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.style.transform = `translateY(-10px) scale(1.05)`;
+                item.style.boxShadow = '0 10px 30px rgba(0, 247, 255, 0.3)';
+            });
+
+            item.addEventListener('mouseout', () => {
+                item.style.transform = 'translateY(0) scale(1)';
+                item.style.boxShadow = 'none';
+            });
+        });
+
+        // Add hover effect for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('mouseover', () => {
+                link.style.color = 'var(--neon-blue)';
+                link.style.textShadow = '0 0 10px var(--neon-blue)';
+            });
+
+            link.addEventListener('mouseout', () => {
+                link.style.color = 'var(--text-primary)';
+                link.style.textShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
